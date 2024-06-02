@@ -1,0 +1,518 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+html {
+    font-size: 16px;
+    font-family: 'NotoSansSC';
+}
+
+content {
+    background-image: var(--editorbg)
+}
+
+code,
+.CodeMirror {
+    background-color: rgba(222, 187, 255, 0.05)!important;
+    border-radius: 6px;
+    font-size: 125%;
+    padding: 0.2em 0.4em;
+    font-family: 'SourceCodePro';
+}
+
+#write {
+    max-width: 900px;
+    padding: 30px 50px 20px;
+}
+
+#write p {
+    text-align: left;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.md-image>.md-meta {
+    color: #777777;
+    font-size: 0.9rem;
+    padding: 4px 0;
+}
+
+@page {
+    size: A4;
+    margin: 8mm 0mm;
+}
+
+
+:root {
+    --editorbg: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    --gutter: 24px;
+    --color1: #9090ff;
+    --color2: #ff761e;
+    --color3: #33d57a;
+    --color4: #ff4e6a;
+    --color5: #ffb900;
+    --color6: #00dbff;
+    --color7: #1a98ff;
+    --color1-bg: rgba(161, 78, 255, 0.15);
+    --color-card: #fff;
+}
+
+
+body {
+    background: var(--color-card);
+    font-size: 17px;
+}
+
+a {
+    -webkit-transition: color 0.35s ease-out;
+    transition: color 0.35s ease-out;
+    color: var(--color1);
+    text-decoration: none;
+    word-wrap: break-word;
+}
+
+a:hover,
+a:focus {
+    color: var(--color1);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.7em;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2:before {
+    content: '';
+    width: 100%;
+    padding: 0px 24px;
+    border-bottom: 1px solid #eee;
+    position: absolute;
+    bottom: -1px;
+    left: -24px;
+    box-sizing: unset;
+}
+
+h2:after {
+    transition: all 0.35s ease-out;
+    content: '';
+    position: absolute;
+    background: var(--color1);
+    width: 1em;
+    height: 5px;
+    bottom: -3px;
+    left: 0;
+    border-radius: 10px;
+}
+
+h2:hover:after {
+    width: 2em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+h4 {
+    font-size: 1.15em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 0.9em;
+}
+
+blockquote {
+    color: #666;
+    margin: 24px 0;
+    padding: 0.1em 2.2em;
+    background-color: #f8f8f8;
+    line-height: 28px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+
+ul {
+    padding: 0 0 0 2em;
+    margin-top: 0;
+}
+
+ol {
+    padding: 0 0 0 2.5em;
+    margin-top: 0;
+}
+
+ol {
+    list-style-type: none;
+    counter-reset: item;
+}
+
+ol>li {
+    position: relative;
+    padding: 0.4rem 0;
+    line-height: 24px;
+}
+
+ol>li::before {
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    top: 0.4rem;
+    left: -2.5em;
+    height: 1.6rem;
+    width: 1.6rem;
+    text-align: center;
+    border-radius: 8px;
+    line-height: 1.6rem;
+    background-color: var(--color1-bg);
+    color: var(--color1);
+}
+
+table {
+    color: #5b6064;
+    border-spacing: 0;
+    border-collapse: collapse;
+    max-width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 25px auto;
+    background: transparent;
+    display: block;
+}
+
+table::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+table::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+table thead {
+    border-bottom: 1px solid #eee;
+    background-color: #f8f8f8;
+}
+
+table thead tr {
+    background-color: #f8f8f8;
+}
+
+table th {
+    border: 1px solid #eee;
+    padding: 13px 26px;
+    font-weight: 400;
+}
+
+table td {
+    border: 1px solid #eee;
+    padding: 13px 26px;
+}
+
+table tr {
+    background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+
+img,
+canvas,
+iframe,
+video,
+svg,
+select,
+textarea {
+    width: auto;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0 !important;
+}
+
+#write>ul>li {
+    position: relative;
+    padding: 8px 0;
+    padding-left: 25px;
+    line-height: 1rem;
+}
+
+#write>ul>li::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background: var(--color1);
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-right: 11px;
+    margin-left: -25px;
+    border-radius: 100%;
+    border: 3px solid #fff;
+    z-index: 100;
+    position: relative;
+}
+
+#write>ul>li::after {
+    content: '';
+    height: 100%;
+    width: 2px;
+    background: var(--color1-bg);
+    position: absolute;
+    left: 6px;
+    top: 20px;
+}
+
+#write>ul>li:last-child:after {
+    display: none;
+}
+
+#write>ul>li>p {
+    top: -1em;
+}
+
+input[type=checkbox] {
+    margin-top: 10px !important;
+}
+
+.md-task-list-item>p {
+    top: -1.5em !important;
+}
+
+
+</style><title>法 相关题目 整合</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='法-相关知识点-整合\t\t\t\t\t\t\t0602c-版'><span>法 相关知识点 整合</span><span>							</span><span>0602c 版</span></h2><blockquote><p>&nbsp;</p><h4 id='课本知识点-索引'><span>课本知识点 索引</span></h4><p><span>【七下】</span>
+<span>P84~94 </span><strong><span>法律与生活</span></strong><span>、法律的含义，</span><strong><span>法律的特征与作用</span></strong>
+<span>P95~103 </span><strong><span>未成年人保护</span></strong><span>法、六大保护，与法同行（树立宪法意识、依法办事）</span></p><p><span>【八上】</span>
+<span>P46~51 </span><strong><span>法不可违</span></strong><span>、违法行为分类、遵章守法；P52~57 </span><strong><span>犯罪</span></strong><span>基本特征、刑罚分类、预防犯罪；P58~62 依法求助、应对违法犯罪</span></p><p><span>【八下】</span>
+<strong><span>[宪法]</span></strong><span> P2~32 基本原则、尊重保障人权，规范权力运行，维护宪法权威、宪法地位，宪法监督、增强宪法意识</span>
+<strong><span>[权利义务]</span></strong><span> P34~46 基本权利，依法行使权利、维权四方式；P47~60 遵守宪法和法律、维护国家利益、基本义务，权利义务相统一、履行法定义务，违反义务担责</span>
+<strong><span>[法治精神]</span></strong><span> P98~107 自由（法治与自由的关系）平等；P108~119 公平正义  </span></p><p><span>【九上】P44~50 良法之治、法治要求、重要性，</span><strong><span>依法治国</span></strong><span>；P50~56 法治政府、厉行法治、德治与法治</span></p><p>&nbsp;</p></blockquote><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h4 id='国家'><span>国家</span></h4><ul><li><p><strong><span>依法治国</span></strong></p><ol start='' ><li><p><span>★ 依法治国是党领导人民治理国家的基本方略，要不断推进和完善，推进法治中国建设</span></p><p><span>（全面依法治国是中国特色社会主义的本质要求和重要保障）</span></p></li><li><p><span>法律是由国家制定或认可</span></p></li><li><p><span>★ 有利于完善相关法律法规，规范……行为，为……提供法治保障，完善……（社会主义）法治体系</span></p></li><li><p><span>有利于促进科学立法、民主立法，实行良法之治，厉行法治</span></p></li><li><p><span>习近平法治思想是全面依法治国的根本遵循和行动指南</span></p></li><li><p><span>【党+法治+人民】坚定不移走中国特色社会主义法治道路，必须坚持坚持党的领导、人民当家做主、依法治国有机统一（九上 P50）</span></p></li><li><p><span>（中国共产党领导人民制定宪法和法律，领导人民实施宪法和法律，） 党领导立法，保证执法，支持司法，带头守法</span></p></li></ol></li><li><p><strong><span>国家机构</span></strong></p><ol start='' ><li><span>★ （全国）人大及其常委会行使（国家）立法权（，是最高的国家机关）</span></li><li><span>中华人民共和国主席有公布法律、发布命令的职权</span></li><li><span>法院具有审判权</span></li><li><span>检察院具有检察权</span></li><li><span>政府（国务院）：行政机关严格执法</span></li></ol></li><li><p><strong><span>民主</span></strong></p><ol start='' ><li><span>我国坚持以人民为中心的发展思想</span></li><li><span>党的根本宗旨是全心全意为人民服务</span></li><li><span>人民当家做主是社会主义民主政治的本质特征</span></li><li><span>有事好商量，众人的事情由众人商量，是人民民主的真谛</span></li><li><span>全过程人民民主是最广泛，最真实，最管用的民主</span></li><li><span>我国是人民民主专政的社会主义国家，国家一切权力属于人民</span></li><li><span>公民积极参与民主生活，行使民主权利</span></li><li><span>【立法联系点】联系点征求群众意见有利于调动人民群众的积极性和创造性；有利于保障人民的知情权、参与权、表达权和监督权，保障人民利益，有利于了解民情、广察民意、汇聚民智，制定出反应人民意志的“良法”；有利于科学立法、民主立法</span></li></ol></li></ul><h4 id='社会宣传风尚）'><span>社会（宣传、风尚）</span></h4><ol start='' ><li><span>有利于弘扬法治精神，形成……（遵法守法、保护法律保护对象或规范/遏制行为/现象）的良好风尚</span></li><li><span>法治是现代政治文明的核心，是实现社会公平正义，构建和谐社会，解决社会矛盾，维护社会稳定的有效方式</span></li><li><span>【</span><strong><span>爱国主义</span></strong><span>】强化法律对道德的促进作用，弘扬中华传统美德；为公民确定正确价值引领</span></li></ol><h4 id='个人公民权利权益）'><span>个人/公民（权利、权益）</span></h4><ol start='' ><li><span>有利于运用法治手段维护公民的……（权利：财产权、隐私权、名誉权……）</span></li><li><span>有利于（特定对象）的健康成长，促进人的全面发展</span></li></ol><h4 id='其他'><span>其他</span></h4><ol start='' ><li><p><span>【</span><strong><span>事件本身</span></strong><span>】有利于打击……现象/规范……的行为/保护……</span></p></li><li><p><span>【</span><strong><span>人民生活相关</span></strong><span>】七下 P85 — 生活与法律息息相关；七下 P92 — 法律的作用</span></p><p>&nbsp;</p></li></ol></div></div>
+</body>
+</html>

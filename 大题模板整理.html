@@ -1,0 +1,512 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+html {
+    font-size: 16px;
+    font-family: 'NotoSansSC';
+}
+
+content {
+    background-image: var(--editorbg)
+}
+
+code,
+.CodeMirror {
+    background-color: rgba(222, 187, 255, 0.05)!important;
+    border-radius: 6px;
+    font-size: 125%;
+    padding: 0.2em 0.4em;
+    font-family: 'SourceCodePro';
+}
+
+#write {
+    max-width: 900px;
+    padding: 30px 50px 20px;
+}
+
+#write p {
+    text-align: left;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.md-image>.md-meta {
+    color: #777777;
+    font-size: 0.9rem;
+    padding: 4px 0;
+}
+
+@page {
+    size: A4;
+    margin: 8mm 0mm;
+}
+
+
+:root {
+    --editorbg: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    --gutter: 24px;
+    --color1: #9090ff;
+    --color2: #ff761e;
+    --color3: #33d57a;
+    --color4: #ff4e6a;
+    --color5: #ffb900;
+    --color6: #00dbff;
+    --color7: #1a98ff;
+    --color1-bg: rgba(161, 78, 255, 0.15);
+    --color-card: #fff;
+}
+
+
+body {
+    background: var(--color-card);
+    font-size: 17px;
+}
+
+a {
+    -webkit-transition: color 0.35s ease-out;
+    transition: color 0.35s ease-out;
+    color: var(--color1);
+    text-decoration: none;
+    word-wrap: break-word;
+}
+
+a:hover,
+a:focus {
+    color: var(--color1);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.7em;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2:before {
+    content: '';
+    width: 100%;
+    padding: 0px 24px;
+    border-bottom: 1px solid #eee;
+    position: absolute;
+    bottom: -1px;
+    left: -24px;
+    box-sizing: unset;
+}
+
+h2:after {
+    transition: all 0.35s ease-out;
+    content: '';
+    position: absolute;
+    background: var(--color1);
+    width: 1em;
+    height: 5px;
+    bottom: -3px;
+    left: 0;
+    border-radius: 10px;
+}
+
+h2:hover:after {
+    width: 2em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+h4 {
+    font-size: 1.15em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 0.9em;
+}
+
+blockquote {
+    color: #666;
+    margin: 24px 0;
+    padding: 0.1em 2.2em;
+    background-color: #f8f8f8;
+    line-height: 28px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+
+ul {
+    padding: 0 0 0 2em;
+    margin-top: 0;
+}
+
+ol {
+    padding: 0 0 0 2.5em;
+    margin-top: 0;
+}
+
+ol {
+    list-style-type: none;
+    counter-reset: item;
+}
+
+ol>li {
+    position: relative;
+    padding: 0.4rem 0;
+    line-height: 24px;
+}
+
+ol>li::before {
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    top: 0.4rem;
+    left: -2.5em;
+    height: 1.6rem;
+    width: 1.6rem;
+    text-align: center;
+    border-radius: 8px;
+    line-height: 1.6rem;
+    background-color: var(--color1-bg);
+    color: var(--color1);
+}
+
+table {
+    color: #5b6064;
+    border-spacing: 0;
+    border-collapse: collapse;
+    max-width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 25px auto;
+    background: transparent;
+    display: block;
+}
+
+table::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+table::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+table thead {
+    border-bottom: 1px solid #eee;
+    background-color: #f8f8f8;
+}
+
+table thead tr {
+    background-color: #f8f8f8;
+}
+
+table th {
+    border: 1px solid #eee;
+    padding: 13px 26px;
+    font-weight: 400;
+}
+
+table td {
+    border: 1px solid #eee;
+    padding: 13px 26px;
+}
+
+table tr {
+    background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+
+img,
+canvas,
+iframe,
+video,
+svg,
+select,
+textarea {
+    width: auto;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0 !important;
+}
+
+#write>ul>li {
+    position: relative;
+    padding: 8px 0;
+    padding-left: 25px;
+    line-height: 1rem;
+}
+
+#write>ul>li::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background: var(--color1);
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-right: 11px;
+    margin-left: -25px;
+    border-radius: 100%;
+    border: 3px solid #fff;
+    z-index: 100;
+    position: relative;
+}
+
+#write>ul>li::after {
+    content: '';
+    height: 100%;
+    width: 2px;
+    background: var(--color1-bg);
+    position: absolute;
+    left: 6px;
+    top: 20px;
+}
+
+#write>ul>li:last-child:after {
+    display: none;
+}
+
+#write>ul>li>p {
+    top: -1em;
+}
+
+input[type=checkbox] {
+    margin-top: 10px !important;
+}
+
+.md-task-list-item>p {
+    top: -1.5em !important;
+}
+
+
+</style><title>大题模板整理</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='1设立基层立法联系点征求群众意见说明了什么'><span>1、设立基层立法联系点、征求群众意见说明了什么？</span></h2><ol><li><span>人民当家做主是社会主义民主政治的本质特征</span></li><li><span>有事好商量，众人的事众人商量，是人民民主的真谛</span></li><li><span>全过程人民民主是最广泛、最真实、最管用的民主</span></li><li><span>联系点征求群众建设意见，有利于调动人民群众的积极性和创造性，促进民主立法、科学立法</span></li></ol><h2 id='2中国式现代化'><span>2、中国式现代化</span></h2><figure><table><thead><tr><th><strong><span>中国式现代化的中国特色</span></strong></th><th><strong><span>实践要求（做法）</span></strong></th></tr></thead><tbody><tr><td><span>① 人口规模巨大的现代化</span></td><td><span>坚持以人民为中心的发展思想，实施科教兴国战略、人才强国战略，坚持计划生育的基本国策</span></td></tr><tr><td><span>② 全体人民共同富裕的现代化</span></td><td><span>发展的根本目的就是增进民生福祉，以人民为中心，坚持共享的发展理念</span></td></tr><tr><td><span>③ 物质文明和精神文明相协调的现代化</span></td><td><span>实施高质量发展，贯彻新发展理念，不断夯实人民幸福生活的物质条件，大力发展社会主义先进文化，增强文化自信。</span></td></tr><tr><td><span>④ 人与自然和谐共生的现代化</span></td><td><span>建设生态文明，坚持节约资源和保护环境的基本国策，树立绿水青山就是金山银山的理念，坚持可持续发展，形成绿色发展方式和绿色生活理念，贯彻创新、协调、绿色、开放、共享的新发展理念，坚持绿色发展道路。</span></td></tr><tr><td><span>⑤走和平发展道路的现代化</span></td><td><span>高举和平、发展、合作、共赢的旗帜，构建人类命运共同体，谋求互利共赢，中国是一个负责任的大国，中国主动担当，贡献中国方案和中国智慧</span></td></tr></tbody></table></figure><h2 id='3怎样才能使未成年人免受伤害不同角度）'><span>3、怎样才能使未成年人免受伤害？（不同角度）</span></h2><ol><li><span>国家：制定和完善相关的保护未成年人的法律，为更好地保护未成年人的合法权益提供法律依据</span></li><li><span>社会：营造一个有利于未成年人健康成长的社会环境</span></li><li><span>网络：营造健康、文明、有序的网络环境，保障未成年人在网络空间的合法权益</span></li><li><span>家庭：以正确合理的方式教育、关心未成年人，给未成年人一个良好的家庭氛围，尽到家长的监督职责</span></li><li><span>学校：定期开展有关未成年人自我保护的讲座，开展法律知识讲座，做好消防、地震等各种安全演练</span></li><li><span>未成年人：增强自我保护意识，提高自我保护能力，增强社会责任感，学会用法律来保护自己</span></li></ol><h2 id='4有关发展类题目'><span>4、有关发展类题目</span></h2><p><span>A. 做法/启示：坚持……                               B.影响：有利于……</span></p><ol><li><span>科教兴国战略、创新驱动发展战略、人才强国战略</span></li><li><span>转变发展方式，优化经济结构，转换增长动力，建设现代化经济体系</span></li><li><span>绿色发展道路</span></li><li><span>积极寻求新的经济增长点，转变经济发展思路</span></li><li><span>促进发展，要把提升质量放在首位，以推动高质量发展</span></li><li><span>积极谋求自身发展，提升国际竞争力</span></li><li><span>践行创新、协调、绿色、开放、共享的新发展理念</span></li></ol><h2 id='5-从中华人民共和国xxx法的立法过程中能悟出哪些道理'><span>5、 从《中华人民共和国xxx法》的立法过程中，能悟出哪些道理?</span></h2><ol><li><span>法律是由国家制定或认可的</span></li><li><span>全国人大及其常务委员会行使国家立法权</span></li><li><span>我国坚持依法治国的基本方略</span></li><li><span>我国坚持厉行法治，科学立法</span></li><li><span>公民积极参与民主生活，行使民主权利</span></li><li><span>坚定不移走中国特色社会主义法治道路，必须坚持党的领导，人民当家作主，依法治国有机统一</span></li></ol><h2 id='6党的一套话八下p4）'><span>6、“党”的一套话（八下P4）</span></h2><ol><li><span>中国共产党是中国工人阶级先锋队，是中国人民和中华民族先锋队；党的根本宗旨是全心全意为人民服务</span></li><li><span>中国共产党领导是中国特色社会主义最本质特征，是中国特色社会主义制度的最大优势，党是最高政治领导力量</span></li><li><span>为中国人民谋幸福，为中华民族谋复兴是中国共产党的初心和使命</span></li><li><span>人民对美好生活的向往是党的奋斗目标</span></li><li><span>中国共产党坚持以人民为中心的发展思想</span></li></ol><p><strong><span>青少年如何做？</span></strong><span>①热爱祖国，拥护中国共产党的领导 ②树立理想，努力学习，担当时代重任</span></p><h2 id='7劳动帮助未成年人树立正确的劳动观）'><span>7、劳动（帮助未成年人树立正确的劳动观）</span></h2><ol><li><span>八上 P108~109（劳动的价值 + 劳动者值得尊重敬）、</span></li><li><span>八下 P54~55 劳动既是公民的基本权利，也是公民的基本义务；青少年要自觉履行劳动的义务</span></li></ol><p><strong><span>社会劳动</span></strong><span>：八上P110（实干精神） + 九上P114（新时代是奋斗出来的）</span></p><p><strong><span>青少年如何做？</span></strong><span>①树立正确的劳动观念 ②从日常小事做起，帮父母干力所能及的家务，学习一项技能：炒菜……</span></p><h2 id='8开展大型文化类活动有什么意义'><span>8、开展大型文化类活动有什么意义？</span></h2><ol><li><span>有利于弘扬和传承中华优秀传统文化，发展社会主义先进文化</span></li><li><span>有利于增强文化自信，增强人们对民族文化的认同感和自豪感</span></li><li><span>有利于为中华民族伟大复兴提供精神动力</span></li><li><span>有利于增强民族凝聚力，增强民族自尊心和自信心</span></li><li><span>有利于增强中华文化的影响力</span></li><li><span>促进不同文化的理解和包容，推动文明的交流互鉴</span></li><li><span>提升文化影响力，增强文化软实力，建设文化强国</span></li><li><span>促进文化产业发展，推动文化繁荣发展</span></li><li><span>丰富人们精神文化生活，加强社会主义精神文明建设</span></li></ol><h2 id='9结合所学知识思考习近平主席高度重视京津冀协同发展这盘大棋是基于怎样的考量'><span>9、结合所学知识，思考习近平主席高度重视京津冀协同发展这盘大棋是基于怎样的考量？</span></h2><ol><li><span>新时代我国主要矛盾已经转化为人民日益增长的美好生活的需要和不平衡不充分的发展之间的矛盾</span></li><li><span>我国经济已由高速增长阶段转向高质量发展阶段</span></li><li><span>我国经济发展面临着区域发展不平衡等现实挑战</span></li><li><span>共同富裕是中国特色社会主义的本质要求</span></li><li><span>京津冀协同发展体现了区域协调发展，体现了协调与共享的新发展理念</span></li></ol><h2 id='10严厉惩处犯罪官员体现了哪些法律观点'><span>10、严厉惩处犯罪官员体现了哪些法律观点？</span></h2><ol><li><span>法律是由国家强制力保证实施的</span></li><li><span>法律对全体成员具有普遍约束力</span></li><li><span>我国坚持依法治国基本方略，坚持严格执法，公正司法</span></li><li><span>公民在法律面前一律平等，任何人只要触犯国家法律，都必须承担相应的法律责任</span></li><li><span>法律要求做的必须去做，法律禁止做的坚决不做</span></li><li><span>法律通过制裁违法犯罪，维护我们的合法权益</span></li></ol><h2 id='11从文化角度说明春节成为联合国假日带来的积极影响意义'><span>11、从文化角度，说明“春节”成为“联合国假日”带来的积极影响？/意义？</span></h2><ol><li><span>中华文化源远流长、博大精深、薪火相传、历久弥新</span></li><li><span>理念、智慧、气度、神韵，增添了中国人民和中华民族内心深处的自信和自豪，坚定文化自信</span></li><li><span>随着中国的发展，中华文化对世界的影响越来越大</span></li><li><span>在中国与其他国家的深度互动中，外国人有更多的机会更强烈的意愿，接触、体验和认识中国文化，感受中国文化的魅力，接受中国文化的熏陶，促进不同文化的理解和包容，推动不同文明交流互鉴</span></li></ol><h2 id='12党和政府关注民生如医疗就业教育公平等）这说明了什么'><span>12、党和政府关注民生（如医疗、就业、教育公平等）这说明了什么？</span></h2><ol><li><span>党和政府坚持以人民为中心的发展思想</span></li><li><span>发展的根本目的是增进民生福祉</span></li><li><span>人民对美好生活的向往就是党的奋斗目标</span></li><li><span>中国共产党人的初心和使命就是为中国人民谋幸福，为中华民族谋复兴</span></li><li><span>党和政府引领全体人民朝向共同富裕方向稳步前进</span></li><li><span>党和政府坚持共享发展理念不断满足人民日益增长的美好生活需要</span></li><li><span>党和政府致力于保障和改善民生，维护社会公平正义</span></li><li><span>中国共产党坚持立党为公，执政为民，宗旨是全心全意为人民服务</span></li><li><span>尊重和保障人权是我国宪法的基本原则</span></li></ol><h2 id='13党和政府关注民生如医疗就业教育公平等）有什么意义'><span>13、党和政府关注民生（如医疗、就业、教育公平等）有什么意义？</span></h2><ol><li><span>有利于解决社会主义初级阶段的主要矛盾，满足人民日益增长的美好生活需要</span></li><li><span>有利于提高人民生活水平，减小贫富差距，实现共同富裕</span></li><li><span>有利于维护社会公平正义，保障全体人民共享改革发展</span></li><li><span>有利于增强人民的获得感，幸福感，安全感</span></li><li><span>有利于维护社会稳定，构建社会主义和谐社会，实现中华民族伟大复兴</span></li></ol><h2 id='14法的大题模板'><span>14、法的大题模板</span></h2><p><span>七上 P85 法律与生活，法律的特征与作用，未成年人保护法</span></p><p><span>八上 P46 法不可为，犯罪</span></p><p><span>八下 法定义务，宪法，自由与法律</span></p><p><span>九上 P45 依法治国，良法治治，厉行法治</span></p><ol><li><p><span>看见法的立、改、废，写：</span></p><ol><li><span>人大及其常委会具有立法权</span></li><li><span>法律是由国家制定或认可的</span></li><li><span>推进科学立法，实行良法之治，厉行法治</span></li><li><span>依法治国是党领导国家的基本方略，要不断推进和完善</span></li></ol></li><li><p><span>看见法的出台是与人民生活相关的，写：①七下 P85 ②七下 P92</span></p></li><li><p><span>看见法院审结案件，写：法院具有审判权</span></p></li><li><p><span>看见检察院，写：检察院具有检察权</span></p></li><li><p><span>主席颁布法律，写：国家主席公布法律、发布命令</span></p></li><li><p><span>政府国家的法治工作是为人民，写：我国坚持以人民为中心的发展思想</span></p></li><li><p><span>党领导立法是为了人民，写：党的根本宗旨是全心全意为人民服务</span></p></li><li><p><span>政府（国务院）严格执法，写：行政机关严格执法</span></p></li></ol><h2 id='15新质生产力'><span>15、新质生产力</span></h2><h3 id='1）为什么发展新质生产力'><span>（1）为什么发展新质生产力?</span></h3><ol><li><span>我国经济已由高速发展阶段转向高质量发展阶段</span></li><li><span>高质量发展是全面建设社会主义现代化国家的首要任务</span></li><li><span>我国推进高质量发展还有许多的瓶颈，科技创新能力还需进一步提高</span></li><li><span>创新是推动人类社会向前发展的重要力量</span></li><li><span>创新是一个民族进步的灵魂，是一个国家兴旺发达的不竭源泉</span></li><li><span>创新驱动是国家命运所系</span></li><li><span>创新是引领发展的第一动力</span></li><li><span>科技创新能力已经成为综合国力竞争的决定性因素</span></li></ol><h3 id='2）怎样发展性质生产力'><span>（2）怎样发展性质生产力？</span></h3><ol><li><span>实现高质量发展需要转变发展方式，优化经济结构，转换增长动力，建设现代化经济体系</span></li><li><span>深入实施科教兴国战略，人才强国战略，创新驱动发展战略</span></li><li><span>增强自主创新能力，搭建有利于创新的活动平台和融资平台</span></li><li><span>营造有利于创新的舆论氛围和法治环境</span></li><li><span>把提升发展质量放在首位，积极寻求新的经济增长点</span></li><li><span>贯彻落实创新，协调，绿色，开放，共享的新发展理念</span></li><li><span>坚持人与自然和谐共生；坚持绿色发展道路（处理好经济发展与生态环境保护的关系），落实可持续发展战略，加强生态文明建设</span></li><li><span>推动构建以国内大循环为主体，国内国际双循环相互促进的新发展格局</span></li></ol><h2 id='16我国取得辉煌成就的原因'><span>16、我国取得辉煌成就的原因</span></h2><p><span>（1）根本原因：开辟了中国特色社会主义道路，形成了中国特色社会主义理论体系，确立了中国特色社会主义制度，发展了中国特色社会主义文化</span></p><p><span>（2）主要原因：</span></p><ol><li><span>坚持中国共产党的领导</span></li><li><span>坚持以经济建设为中心，大力发展生产力</span></li><li><span>坚持改革开放</span></li><li><span>坚持实施科教兴国战略，人才强国战略，创新驱动发展战略；弘扬创新精神</span></li><li><span>坚持节约资源和保护环境的基本国策，坚持可持续发展战略，贯彻创新，协调，绿色，开放，共享的新发展理念，坚持绿色发展道路，共建生态文明</span></li><li><span>全国各族人民的艰苦奋斗</span></li><li><span>中国特色社会主义制度的优越性</span></li><li><span>弘扬以爱国主义为核心的民族精神和以改革创新为核心的时代精神</span></li><li><span>促进区域协调发展</span></li><li><span>坚持以人民为中心的发展思想，让人民群众共享发展成果</span></li><li><span>我国经济实力和综合国力显著增强，……提供了物质基础</span></li></ol></div></div>
+</body>
+</html>
